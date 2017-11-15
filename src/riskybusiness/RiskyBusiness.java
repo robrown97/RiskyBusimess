@@ -16,6 +16,8 @@ public class RiskyBusiness {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        appGUI myGUI = new appGUI();
+        myGUI.setVisible(true);
     }
     
 }
