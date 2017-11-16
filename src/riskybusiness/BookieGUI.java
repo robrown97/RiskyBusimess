@@ -5,6 +5,14 @@
  */
 package riskybusiness;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
 /**
  *
  * @author robertbrown
@@ -14,8 +22,22 @@ public class BookieGUI extends javax.swing.JFrame {
     /**
      * Creates new form BookieGUI
      */
+    
+    Fixture fixture;
+    ArrayList<Fixture> fList;
+    StringBuffer strBuff;
+    File f;
+    
     public BookieGUI() {
         initComponents();
+        teamNameTF.setEditable(false);
+        horseNameTF.setEditable(false);
+        oddsTF.setEditable(false);
+        fixture = new Fixture();
+        fList = new ArrayList<>();
+        strBuff = new StringBuffer();
+        f = new File("fixtures.dat");
+        readFile();
     }
 
     /**
@@ -51,7 +73,7 @@ public class BookieGUI extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
+        viewFixturesPane = new javax.swing.JTextPane();
         horseLb = new javax.swing.JLabel();
         horseNameTF = new javax.swing.JTextField();
         homeBtn = new javax.swing.JButton();
@@ -88,7 +110,7 @@ public class BookieGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Administrative Panel");
 
-        sportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        sportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Sport", "Football", "Horse Racing" }));
         sportCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sportCBActionPerformed(evt);
@@ -102,10 +124,20 @@ public class BookieGUI extends javax.swing.JFrame {
         jLabel5.setText("Odds:");
 
         addBtn.setText("Add to System");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         viewBtn.setText("View System");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtnActionPerformed(evt);
+            }
+        });
 
-        jScrollPane6.setViewportView(jTextPane3);
+        jScrollPane6.setViewportView(viewFixturesPane);
 
         horseLb.setText("Horse Name:");
 
@@ -152,7 +184,7 @@ public class BookieGUI extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(oddsTF, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGap(15, 15, 15))))
-                .addGap(0, 103, Short.MAX_VALUE))
+                .addGap(0, 92, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,7 +237,20 @@ public class BookieGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sportCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sportCBActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        if(sportCB.getSelectedItem().equals("Choose Sport")){
+            teamNameTF.setEditable(false);
+            horseNameTF.setEditable(false);
+            oddsTF.setEditable(false);
+        } else if(sportCB.getSelectedItem().equals("Football")){
+            teamNameTF.setEditable(true);
+            oddsTF.setEditable(true);
+            horseNameTF.setEditable(false);
+        } else if(sportCB.getSelectedItem().equals("Horse Racing")){
+            teamNameTF.setEditable(false);
+            oddsTF.setEditable(true);
+            horseNameTF.setEditable(true);
+        }
     }//GEN-LAST:event_sportCBActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
@@ -214,6 +259,80 @@ public class BookieGUI extends javax.swing.JFrame {
         new appGUI().setVisible(true);
     }//GEN-LAST:event_homeBtnActionPerformed
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        if(sportCB.getSelectedItem().equals("Football")){
+            String sport = "Football";
+            String teamName = teamNameTF.getText();
+            double odds = Double.parseDouble(oddsTF.getText());
+            
+            fixture.setSport(sport);
+            fixture.setName(teamName);
+            fixture.setOdds(odds);
+        } else if(sportCB.getSelectedItem().equals("Horse Racing")){
+            String sport = "Horse Racing";
+            String horseName = horseNameTF.getText();
+            double odds = Double.parseDouble(oddsTF.getText());
+            
+            fixture.setSport(sport);
+            fixture.setName(horseName);
+            fixture.setOdds(odds);
+        }
+        
+        wrtieFile(fixture);
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        // TODO add your handling code here:
+        readFile();
+        System.out.println(fList.size());
+        for(int i = 0; i < fList.size(); i++){
+//            strBuff.append("Sport: " + fList.get(i).getSport() + " - Name: " + fList.get(i).getName() + " - Odds: " + fList.get(i).getOdds() + "\n");
+//            System.out.println("Sport: " + fList.get(i).getSport() + " - Name: " + fList.get(i).getName() + " - Odds: " + fList.get(i).getOdds() + "\n");
+        }
+        System.out.println("*****************************");
+//        if(fList.size() > 0){
+//            viewFixturesPane.setText(strBuff.toString());
+//            System.out.println(strBuff.toString());
+//        }
+    }//GEN-LAST:event_viewBtnActionPerformed
+
+    public void wrtieFile(Object obj){
+        FileOutputStream fout;
+        ObjectOutputStream oos;
+        try {
+            fout = new FileOutputStream(f);
+            oos = new ObjectOutputStream(fout);
+            
+            oos.writeObject(obj);
+            System.out.println("Fixture added");
+            oos.close();
+        }catch(IOException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void readFile(){
+        fList.clear();
+        
+        FileInputStream fis;
+        ObjectInputStream ois;
+        try {
+            fis = new FileInputStream(f);
+            ois = new ObjectInputStream(fis);
+            
+            Object obj = ois.readObject();
+            while(obj != null){
+                System.out.println("=======");
+                fList.add((Fixture)obj);
+                obj = ois.readObject();
+            }
+            ois.close();
+        }catch (IOException | ClassNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -272,11 +391,11 @@ public class BookieGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
     private javax.swing.JTextField oddsTF;
     private javax.swing.JComboBox<String> sportCB;
     private javax.swing.JLabel teamLb;
     private javax.swing.JTextField teamNameTF;
     private javax.swing.JButton viewBtn;
+    private javax.swing.JTextPane viewFixturesPane;
     // End of variables declaration//GEN-END:variables
 }
