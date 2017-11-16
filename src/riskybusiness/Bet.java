@@ -5,33 +5,47 @@
  */
 package riskybusiness;
 
+import java.io.Serializable;
+
 /**
  *
  * @author robertbrown
  */
-public class Bet extends SuperClass {
+public class Bet extends SuperClass implements Serializable {
     //declaring variables of sub class
     private String sport;
-    private String name;
+    private String teamName;
+    private String horseName;
     private double bet;
     
     //constructor
     public Bet(){
         super();
         String sport = " ";
-        String name = " ";
+        String teamName = " ";
+        String horseName =" ";
         double bet = 0;
+        
     }
     
     //overloaded constructor
-    public Bet(String sport, String name, Double bet){
+    public Bet(String sport, String teamName,String horseName, double bet, double odd, double steak){
         super();
         this.sport=sport;
-        this.name=name;
+        this.teamName=teamName;
+        this.horseName=horseName;
         this.bet=bet;
     }
     
+    public String getHorseName() {
+        return horseName;
+    }
+
     //setters and getter
+    public void setHorseName(String horseName) {    
+        this.horseName = horseName;
+    }
+
     public String getSport() {
         return sport;
     }
@@ -40,12 +54,12 @@ public class Bet extends SuperClass {
         this.sport = sport;
     }
 
-    public String getName() {
-        return name;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
     public double getBet() {

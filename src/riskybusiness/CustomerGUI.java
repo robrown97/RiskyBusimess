@@ -5,6 +5,15 @@
  */
 package riskybusiness;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author robertbrown
@@ -12,14 +21,14 @@ package riskybusiness;
 
 public class CustomerGUI extends javax.swing.JFrame {
     
-    private SuperClass s;
-    
+    private SuperClass s;//creating instance of the SuperClass
+    private ArrayList <SuperClass> customerBet; //creating a arrayList called CustomerBet
     /**
      * Creates new form EmployeeGUI
      */
     public CustomerGUI() {
         initComponents();
-        
+        customerBet = new ArrayList <>(); //creating instance of ArrayList
     }
 
     /**
@@ -141,14 +150,16 @@ public class CustomerGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(horseNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(horseLb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(horseNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(horseLb)
                                 .addComponent(jLabel6)
                                 .addComponent(teamLb))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGap(15, 15, 15)
                             .addComponent(teamNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel3)
@@ -226,10 +237,43 @@ public class CustomerGUI extends javax.swing.JFrame {
     private void placeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeBtnActionPerformed
         // TODO add your handling code here:
         if(s instanceof Bet){
-            s.setBet(Double.parseDouble(betAmountTF.getText()));
+            //retrieving the values inputted into the customer App
+            ((Bet)s).setTeamName(teamNameTF.getText());
+            ((Bet)s).setHorseName(horseNameTF.getText());
+            ((Bet)s).setBet(Double.parseDouble(betAmountTF.getText()));    
         }
+        
+        customerBet.add(s);//add to the array list
+        writeToFile();//write method created below
     }//GEN-LAST:event_placeBtnActionPerformed
 
+    
+    //write method
+    public void writeToFile(){//write the customers bet 
+        try{
+        File f = new File("betHistory.dat");//creating file called betHistory to store customer arrayList
+        FileOutputStream fStream = new FileOutputStream(f);//calling output stream and inserting the file into
+        ObjectOutputStream oStream = new ObjectOutputStream(fStream);
+        
+        oStream.writeObject(customerBet);//insert customerBet into objStream and Write it to the file "betHistory.dat"
+        oStream.close();//cloing the object stream
+        }catch(IOException ex){//if any IO errors catch them
+            JOptionPane.showMessageDialog(null, ex);//print them in Joption PopUp
+        }
+    }
+    
+    public void readFromfile(){//read method
+        try{
+        File f = new File("Fixtures.dat"); 
+        FileInputStream fStream = new FileInputStream(f);
+        ObjectInputStream oStream = new ObjectInputStream(fStream);
+        
+        fList = (ArrayList <Fixtures>) oStream.readObject(fList);//reading the arrayList fList
+        oStream.close();//closing the object stream
+        }catch(IOException | ClassNotFoundException ex){//multi catch for any IO errors
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
     /**
      * @param args the command line arguments
      */
