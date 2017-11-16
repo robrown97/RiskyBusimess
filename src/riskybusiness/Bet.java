@@ -5,11 +5,13 @@
  */
 package riskybusiness;
 
+import java.io.Serializable;
+
 /**
  *
  * @author robertbrown
  */
-public class Bet extends SuperClass {
+public class Bet extends SuperClass implements Serializable {
     //declaring variables of sub class
     private String sport;
     private String teamName;

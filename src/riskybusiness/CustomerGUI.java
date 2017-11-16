@@ -21,14 +21,14 @@ import javax.swing.JOptionPane;
 
 public class CustomerGUI extends javax.swing.JFrame {
     
-    private SuperClass s;
-    private ArrayList <SuperClass> customerBet;
+    private SuperClass s;//creating instance of the SuperClass
+    private ArrayList <SuperClass> customerBet; //creating a arrayList called CustomerBet
     /**
      * Creates new form EmployeeGUI
      */
     public CustomerGUI() {
         initComponents();
-        customerBet = new ArrayList <>();
+        customerBet = new ArrayList <>(); //creating instance of ArrayList
     }
 
     /**
@@ -244,33 +244,33 @@ public class CustomerGUI extends javax.swing.JFrame {
         }
         
         customerBet.add(s);//add to the array list
-        writeToFile();
+        writeToFile();//write method created below
     }//GEN-LAST:event_placeBtnActionPerformed
 
     
     //write method
     public void writeToFile(){//write the customers bet 
         try{
-        File f = new File("betHistory.dat");
-        FileOutputStream fStream = new FileOutputStream(f);
+        File f = new File("betHistory.dat");//creating file called betHistory to store customer arrayList
+        FileOutputStream fStream = new FileOutputStream(f);//calling output stream and inserting the file into
         ObjectOutputStream oStream = new ObjectOutputStream(fStream);
         
-        oStream.writeObject(customerBet);
-        oStream.close();
-        }catch(IOException ex){
-            JOptionPane.showMessageDialog(null, ex);
+        oStream.writeObject(customerBet);//insert customerBet into objStream and Write it to the file "betHistory.dat"
+        oStream.close();//cloing the object stream
+        }catch(IOException ex){//if any IO errors catch them
+            JOptionPane.showMessageDialog(null, ex);//print them in Joption PopUp
         }
     }
     
-    public void readFromfile(){
+    public void readFromfile(){//read method
         try{
         File f = new File("Fixtures.dat"); 
         FileInputStream fStream = new FileInputStream(f);
         ObjectInputStream oStream = new ObjectInputStream(fStream);
         
-        fList = (ArrayList <Fixtures>) oStream.readObject(fList);//the fixture object HERE
-        oStream.close();
-        }catch(IOException | ClassNotFoundException ex){
+        fList = (ArrayList <Fixtures>) oStream.readObject(fList);//reading the arrayList fList
+        oStream.close();//closing the object stream
+        }catch(IOException | ClassNotFoundException ex){//multi catch for any IO errors
             JOptionPane.showMessageDialog(null, ex);
         }
     }
