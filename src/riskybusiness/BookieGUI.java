@@ -8,10 +8,10 @@ package riskybusiness;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,17 +26,13 @@ public class BookieGUI extends javax.swing.JFrame {
     Fixture fixture;
     ArrayList<Fixture> fList;
     StringBuffer strBuff;
-    File f;
     
     public BookieGUI() {
         initComponents();
         teamNameTF.setEditable(false);
         horseNameTF.setEditable(false);
         oddsTF.setEditable(false);
-        fixture = new Fixture();
         fList = new ArrayList<>();
-        strBuff = new StringBuffer();
-        f = new File("fixtures.dat");
         readFile();
     }
 
@@ -152,43 +148,6 @@ public class BookieGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(viewBtn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(addBtn)
-                            .addGap(62, 62, 62))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(207, 207, 207)
-                                    .addComponent(jLabel2))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(16, 16, 16)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(horseLb)
-                                                .addComponent(teamLb))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(teamNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(sportCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(horseNameTF))))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(oddsTF, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGap(15, 15, 15))))
-                .addGap(0, 92, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,6 +157,37 @@ public class BookieGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(homeBtn)
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(addBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(oddsTF, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(viewBtn)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(horseLb)
+                                        .addComponent(teamLb))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(sportCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(teamNameTF)
+                                        .addComponent(horseNameTF))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +212,7 @@ public class BookieGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(oddsTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(14, 14, 14)
                 .addComponent(addBtn)
                 .addGap(24, 24, 24)
                 .addComponent(viewBtn)
@@ -261,74 +251,81 @@ public class BookieGUI extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
+        fixture = new Fixture();
         if(sportCB.getSelectedItem().equals("Football")){
-            String sport = "Football";
-            String teamName = teamNameTF.getText();
-            double odds = Double.parseDouble(oddsTF.getText());
-            
-            fixture.setSport(sport);
-            fixture.setName(teamName);
-            fixture.setOdds(odds);
+            if(teamNameTF.getText().equals("") || oddsTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Team name and odds are required");
+            } else {
+                String sport = "Football";
+                String teamName = teamNameTF.getText();
+                double odds = Double.parseDouble(oddsTF.getText());
+
+                fixture.setSport(sport);
+                fixture.setName(teamName);
+                fixture.setOdds(odds);
+                
+                fList.add(fixture);
+                wrtieFile(fList);
+                teamNameTF.setText("");
+                oddsTF.setText("");
+            }
         } else if(sportCB.getSelectedItem().equals("Horse Racing")){
-            String sport = "Horse Racing";
-            String horseName = horseNameTF.getText();
-            double odds = Double.parseDouble(oddsTF.getText());
-            
-            fixture.setSport(sport);
-            fixture.setName(horseName);
-            fixture.setOdds(odds);
+            if(horseNameTF.getText().equals("") || oddsTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Horse name and odds are required");
+            } else {
+                String sport = "Horse Racing";
+                String horseName = horseNameTF.getText();
+                double odds = Double.parseDouble(oddsTF.getText());
+
+                fixture.setSport(sport);
+                fixture.setName(horseName);
+                fixture.setOdds(odds);
+                
+                fList.add(fixture);
+                wrtieFile(fList);
+                oddsTF.setText("");
+                horseNameTF.setText("");
+            }
         }
-        
-        wrtieFile(fixture);
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
-        readFile();
-        System.out.println(fList.size());
-        for(int i = 0; i < fList.size(); i++){
-//            strBuff.append("Sport: " + fList.get(i).getSport() + " - Name: " + fList.get(i).getName() + " - Odds: " + fList.get(i).getOdds() + "\n");
-//            System.out.println("Sport: " + fList.get(i).getSport() + " - Name: " + fList.get(i).getName() + " - Odds: " + fList.get(i).getOdds() + "\n");
+        strBuff = new StringBuffer();
+        for(Fixture f : fList){
+            strBuff.append(f.getSport()+ " - Name: " + f.getName() + " - Odds: " + f.getOdds() + "\n");
         }
-        System.out.println("*****************************");
-//        if(fList.size() > 0){
-//            viewFixturesPane.setText(strBuff.toString());
-//            System.out.println(strBuff.toString());
-//        }
+        viewFixturesPane.setText(strBuff.toString());
     }//GEN-LAST:event_viewBtnActionPerformed
 
-    public void wrtieFile(Object obj){
+    public void wrtieFile(ArrayList list){
+        File f;
         FileOutputStream fout;
-        ObjectOutputStream oos;
+        ObjectOutputStream out;
         try {
+            f = new File("fixtures.dat");
             fout = new FileOutputStream(f);
-            oos = new ObjectOutputStream(fout);
-            
-            oos.writeObject(obj);
+            out = new ObjectOutputStream(fout);
+            out.writeObject(list);
             System.out.println("Fixture added");
-            oos.close();
-        }catch(IOException e){
+            out.close();
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
     
     public void readFile(){
         fList.clear();
-        
-        FileInputStream fis;
-        ObjectInputStream ois;
+        File f;
+        FileInputStream fin;
+        ObjectInputStream oin;
         try {
-            fis = new FileInputStream(f);
-            ois = new ObjectInputStream(fis);
-            
-            Object obj = ois.readObject();
-            while(obj != null){
-                System.out.println("=======");
-                fList.add((Fixture)obj);
-                obj = ois.readObject();
-            }
-            ois.close();
-        }catch (IOException | ClassNotFoundException e) {
+            f = new File("fixtures.dat");
+            fin = new FileInputStream(f);
+            oin = new ObjectInputStream(fin);
+            fList = (ArrayList<Fixture>)oin.readObject();
+            oin.close();
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
