@@ -264,11 +264,11 @@ public class CustomerGUI extends javax.swing.JFrame {
     
     public void readFromfile(){//read method
         try{
-        File f = new File("Fixtures.dat"); 
+        File f = new File("betHistory.dat"); 
         FileInputStream fStream = new FileInputStream(f);
         ObjectInputStream oStream = new ObjectInputStream(fStream);
         
-        fList = (ArrayList <Fixtures>) oStream.readObject(fList);//reading the arrayList fList
+        customerBet = (ArrayList <SuperClass>) oStream.readObject();//reading the arrayList fList
         oStream.close();//closing the object stream
         }catch(IOException | ClassNotFoundException ex){//multi catch for any IO errors
             JOptionPane.showMessageDialog(null, ex);

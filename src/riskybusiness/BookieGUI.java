@@ -5,6 +5,14 @@
  */
 package riskybusiness;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author robertbrown
@@ -14,8 +22,18 @@ public class BookieGUI extends javax.swing.JFrame {
     /**
      * Creates new form BookieGUI
      */
+    
+    Fixture fixture;
+    ArrayList<Fixture> fList;
+    StringBuffer strBuff;
+    
     public BookieGUI() {
         initComponents();
+        teamNameTF.setEditable(false);
+        horseNameTF.setEditable(false);
+        oddsTF.setEditable(false);
+        fList = new ArrayList<>();
+        readFile();
     }
 
     /**
@@ -51,7 +69,7 @@ public class BookieGUI extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
+        viewFixturesPane = new javax.swing.JTextPane();
         horseLb = new javax.swing.JLabel();
         horseNameTF = new javax.swing.JTextField();
         homeBtn = new javax.swing.JButton();
@@ -88,7 +106,7 @@ public class BookieGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Administrative Panel");
 
-        sportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        sportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Sport", "Football", "Horse Racing" }));
         sportCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sportCBActionPerformed(evt);
@@ -102,10 +120,20 @@ public class BookieGUI extends javax.swing.JFrame {
         jLabel5.setText("Odds:");
 
         addBtn.setText("Add to System");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         viewBtn.setText("View System");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtnActionPerformed(evt);
+            }
+        });
 
-        jScrollPane6.setViewportView(jTextPane3);
+        jScrollPane6.setViewportView(viewFixturesPane);
 
         horseLb.setText("Horse Name:");
 
@@ -120,43 +148,6 @@ public class BookieGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(viewBtn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(addBtn)
-                            .addGap(62, 62, 62))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(207, 207, 207)
-                                    .addComponent(jLabel2))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(16, 16, 16)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(horseLb)
-                                                .addComponent(teamLb))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(teamNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(sportCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(horseNameTF))))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(oddsTF, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGap(15, 15, 15))))
-                .addGap(0, 103, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,6 +157,37 @@ public class BookieGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(homeBtn)
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(addBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(oddsTF, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(viewBtn)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(horseLb)
+                                        .addComponent(teamLb))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(sportCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(teamNameTF)
+                                        .addComponent(horseNameTF))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +212,7 @@ public class BookieGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(oddsTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(14, 14, 14)
                 .addComponent(addBtn)
                 .addGap(24, 24, 24)
                 .addComponent(viewBtn)
@@ -205,7 +227,11 @@ public class BookieGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sportCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sportCBActionPerformed
+<<<<<<< HEAD
         // TODO add your handling code here:
+=======
+        // TODO add your handling code here
+>>>>>>> e9d6f8287e2a9cd8a118d095666537c9daaaf561
         if(sportCB.getSelectedItem().equals("Choose Sport")){
             teamNameTF.setEditable(false);
             horseNameTF.setEditable(false);
@@ -227,6 +253,87 @@ public class BookieGUI extends javax.swing.JFrame {
         new appGUI().setVisible(true);
     }//GEN-LAST:event_homeBtnActionPerformed
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        fixture = new Fixture();
+        if(sportCB.getSelectedItem().equals("Football")){
+            if(teamNameTF.getText().equals("") || oddsTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Team name and odds are required");
+            } else {
+                String sport = "Football";
+                String teamName = teamNameTF.getText();
+                double odds = Double.parseDouble(oddsTF.getText());
+
+                fixture.setSport(sport);
+                fixture.setName(teamName);
+                fixture.setOdds(odds);
+                
+                fList.add(fixture);
+                wrtieFile(fList);
+                teamNameTF.setText("");
+                oddsTF.setText("");
+            }
+        } else if(sportCB.getSelectedItem().equals("Horse Racing")){
+            if(horseNameTF.getText().equals("") || oddsTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Horse name and odds are required");
+            } else {
+                String sport = "Horse Racing";
+                String horseName = horseNameTF.getText();
+                double odds = Double.parseDouble(oddsTF.getText());
+
+                fixture.setSport(sport);
+                fixture.setName(horseName);
+                fixture.setOdds(odds);
+                
+                fList.add(fixture);
+                wrtieFile(fList);
+                oddsTF.setText("");
+                horseNameTF.setText("");
+            }
+        }
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        // TODO add your handling code here:
+        strBuff = new StringBuffer();
+        for(Fixture f : fList){
+            strBuff.append(f.getSport()+ " - Name: " + f.getName() + " - Odds: " + f.getOdds() + "\n");
+        }
+        viewFixturesPane.setText(strBuff.toString());
+    }//GEN-LAST:event_viewBtnActionPerformed
+
+    public void wrtieFile(ArrayList list){
+        File f;
+        FileOutputStream fout;
+        ObjectOutputStream out;
+        try {
+            f = new File("fixtures.dat");
+            fout = new FileOutputStream(f);
+            out = new ObjectOutputStream(fout);
+            out.writeObject(list);
+            System.out.println("Fixture added");
+            out.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void readFile(){
+        fList.clear();
+        File f;
+        FileInputStream fin;
+        ObjectInputStream oin;
+        try {
+            f = new File("fixtures.dat");
+            fin = new FileInputStream(f);
+            oin = new ObjectInputStream(fin);
+            fList = (ArrayList<Fixture>)oin.readObject();
+            oin.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -285,11 +392,11 @@ public class BookieGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
     private javax.swing.JTextField oddsTF;
     private javax.swing.JComboBox<String> sportCB;
     private javax.swing.JLabel teamLb;
     private javax.swing.JTextField teamNameTF;
     private javax.swing.JButton viewBtn;
+    private javax.swing.JTextPane viewFixturesPane;
     // End of variables declaration//GEN-END:variables
 }
