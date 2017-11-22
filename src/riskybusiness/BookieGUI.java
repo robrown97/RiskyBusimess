@@ -227,11 +227,7 @@ public class BookieGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sportCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sportCBActionPerformed
-<<<<<<< HEAD
-        // TODO add your handling code here:
-=======
-        // TODO add your handling code here
->>>>>>> e9d6f8287e2a9cd8a118d095666537c9daaaf561
+
         if(sportCB.getSelectedItem().equals("Choose Sport")){
             teamNameTF.setEditable(false);
             horseNameTF.setEditable(false);

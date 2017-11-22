@@ -47,7 +47,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        sportCB = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         teamLb = new javax.swing.JLabel();
         horseLb = new javax.swing.JLabel();
@@ -77,10 +77,10 @@ public class CustomerGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Please Enter the following:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        sportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        sportCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                sportCBActionPerformed(evt);
             }
         });
 
@@ -164,7 +164,7 @@ public class CustomerGUI extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(sportCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,7 +181,7 @@ public class CustomerGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sportCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -212,9 +212,21 @@ public class CustomerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-    
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void sportCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sportCBActionPerformed
+    if(sportCB.getSelectedItem().equals("Choose Sport")){
+            teamNameTF.setEditable(false);
+            horseNameTF.setEditable(false);
+            oddsTP.setEditable(false);
+        } else if(sportCB.getSelectedItem().equals("Football")){
+            teamNameTF.setEditable(true);
+            oddsTP.setEditable(true);
+            horseNameTF.setEditable(false);
+        } else if(sportCB.getSelectedItem().equals("Horse Racing")){
+            teamNameTF.setEditable(false);
+            oddsTP.setEditable(true);
+            horseNameTF.setEditable(true);
+        }
+    }//GEN-LAST:event_sportCBActionPerformed
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
         //clear text entered
@@ -317,7 +329,6 @@ public class CustomerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel horseLb;
     private javax.swing.JTextField horseNameTF;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -331,6 +342,7 @@ public class CustomerGUI extends javax.swing.JFrame {
     private javax.swing.JTextPane oddsTP;
     private javax.swing.JButton placeBtn;
     private javax.swing.JButton resetBtn;
+    private javax.swing.JComboBox<String> sportCB;
     private javax.swing.JLabel teamLb;
     private javax.swing.JTextField teamNameTF;
     // End of variables declaration//GEN-END:variables
