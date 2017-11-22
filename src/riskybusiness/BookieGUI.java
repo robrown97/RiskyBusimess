@@ -251,17 +251,15 @@ public class BookieGUI extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        fixture = new Fixture();
         if(sportCB.getSelectedItem().equals("Football")){
             if(teamNameTF.getText().equals("") || oddsTF.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Team name and odds are required");
             } else {
-                String sport = "Football";
+                fixture = new FootballFixture();
                 String teamName = teamNameTF.getText();
                 double odds = Double.parseDouble(oddsTF.getText());
 
-                fixture.setSport(sport);
-                fixture.setName(teamName);
+                ((FootballFixture)fixture).setTeamName(teamName);
                 fixture.setOdds(odds);
                 
                 fList.add(fixture);
@@ -273,12 +271,11 @@ public class BookieGUI extends javax.swing.JFrame {
             if(horseNameTF.getText().equals("") || oddsTF.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Horse name and odds are required");
             } else {
-                String sport = "Horse Racing";
+                fixture = new HorseRacingFixture();
                 String horseName = horseNameTF.getText();
                 double odds = Double.parseDouble(oddsTF.getText());
 
-                fixture.setSport(sport);
-                fixture.setName(horseName);
+                ((HorseRacingFixture)fixture).setHorseName(horseName);
                 fixture.setOdds(odds);
                 
                 fList.add(fixture);
@@ -293,7 +290,11 @@ public class BookieGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         strBuff = new StringBuffer();
         for(Fixture f : fList){
-            strBuff.append(f.getSport()+ " - Name: " + f.getName() + " - Odds: " + f.getOdds() + "\n");
+            if(f instanceof FootballFixture){
+                strBuff.append("Football - Name: " + ((FootballFixture)f).getTeamName() + " - Odds: " + f.getOdds() + "\n");
+            }else if(f instanceof HorseRacingFixture){
+                strBuff.append("Horse Racing - Name: " + ((HorseRacingFixture)f).getHorseName() + " - Odds: " + f.getOdds() + "\n");
+            }
         }
         viewFixturesPane.setText(strBuff.toString());
     }//GEN-LAST:event_viewBtnActionPerformed
