@@ -12,36 +12,14 @@ import java.io.Serializable;
  * @author Eoghan
  */
 public class Fixture implements Serializable{
-    private String sport;
-    private String name;
-    private double odds;
+    protected double odds;
 
     public Fixture() {
-        sport = "";
-        name = "";
         odds = 0.0;
     }
 
-    public Fixture(String sport, String name, double odds) {
-        this.sport = sport;
-        this.name = name;
+    public Fixture(double odds) {
         this.odds = odds;
-    }
-
-    public String getSport() {
-        return sport;
-    }
-
-    public void setSport(String sport) {
-        this.sport = sport;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public double getOdds() {
