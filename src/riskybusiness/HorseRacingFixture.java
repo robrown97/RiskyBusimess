@@ -20,7 +20,7 @@ public class HorseRacingFixture extends Fixture implements Serializable{
     }
 
     public HorseRacingFixture(String horseName, double odds) {
-        super(odds);
+        super();
         this.horseName = horseName;
     }
 

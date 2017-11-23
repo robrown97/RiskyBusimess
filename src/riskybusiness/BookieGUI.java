@@ -109,8 +109,8 @@ public class BookieGUI extends javax.swing.JFrame {
         jLabel1.setText("Administrative Panel");
 
         sportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Sport", "Football", "Horse Racing" }));
-        sportCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sportCB.addActionListener(new Fixture.awt.event.ActionListener() {
+            public void actionPerformed(Fixture.awt.event.ActionEvent evt) {
                 sportCBActionPerformed(evt);
             }
         });
@@ -122,15 +122,15 @@ public class BookieGUI extends javax.swing.JFrame {
         jLabel5.setText("Odds:");
 
         addBtn.setText("Add to System");
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addBtn.addActionListener(new Fixture.awt.event.ActionListener() {
+            public void actionPerformed(Fixture.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
             }
         });
 
         viewBtn.setText("View System");
-        viewBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        viewBtn.addActionListener(new Fixture.awt.event.ActionListener() {
+            public void actionPerformed(Fixture.awt.event.ActionEvent evt) {
                 viewBtnActionPerformed(evt);
             }
         });
@@ -138,15 +138,15 @@ public class BookieGUI extends javax.swing.JFrame {
         horseLb.setText("Horse Name:");
 
         homeBtn.setText("Home");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        homeBtn.addActionListener(new Fixture.awt.event.ActionListener() {
+            public void actionPerformed(Fixture.awt.event.ActionEvent evt) {
                 homeBtnActionPerformed(evt);
             }
         });
 
         deleteBtn.setText("Remove Fixture");
-        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        deleteBtn.addActionListener(new Fixture.awt.event.ActionListener() {
+            public void actionPerformed(Fixture.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
             }
         });
@@ -383,18 +383,18 @@ public class BookieGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Fixture.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(Fixture.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Fixture.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(Fixture.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Fixture.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(Fixture.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Fixture.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(Fixture.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        Fixture.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BookieGUI().setVisible(true);
             }

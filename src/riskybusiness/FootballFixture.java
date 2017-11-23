@@ -20,7 +20,7 @@ public class FootballFixture extends Fixture implements Serializable{
     }
 
     public FootballFixture(String teamName, double odds) {
-        super(odds);
+        super();
         this.teamName = teamName;
     }
 
