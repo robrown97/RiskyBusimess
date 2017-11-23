@@ -31,4 +31,11 @@ public class FootballFixture extends Fixture implements Serializable{
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
+
+    @Override
+    protected String getFixtureString() {
+        return "Football - Team: " + teamName + " - Odds: " + odds;
+    }
+    
+    
 }
