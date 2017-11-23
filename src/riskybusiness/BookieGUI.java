@@ -247,14 +247,29 @@ public class BookieGUI extends javax.swing.JFrame {
             teamNameTF.setEditable(false);
             horseNameTF.setEditable(false);
             oddsTF.setEditable(false);
+            
+            teamNameTF.setVisible(true);
+            teamLb.setVisible(true);
+            horseNameTF.setVisible(true);
+            horseLb.setVisible(true);
         } else if(sportCB.getSelectedItem().equals("Football")){
             teamNameTF.setEditable(true);
             oddsTF.setEditable(true);
             horseNameTF.setEditable(false);
+            
+            teamNameTF.setVisible(true);
+            teamLb.setVisible(true);
+            horseNameTF.setVisible(false);
+            horseLb.setVisible(false);
         } else if(sportCB.getSelectedItem().equals("Horse Racing")){
             teamNameTF.setEditable(false);
             oddsTF.setEditable(true);
             horseNameTF.setEditable(true);
+            
+            horseNameTF.setVisible(true);
+            horseLb.setVisible(true);
+            teamNameTF.setVisible(false);
+            teamLb.setVisible(false);
         }
     }//GEN-LAST:event_sportCBActionPerformed
 
