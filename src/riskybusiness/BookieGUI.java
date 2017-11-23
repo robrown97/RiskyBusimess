@@ -306,9 +306,9 @@ public class BookieGUI extends javax.swing.JFrame {
         fixturesComboBox.removeAllItems();
         for(Fixture f : fList){
             if(f instanceof FootballFixture){
-                fixturesComboBox.addItem("Football - " + "Team: " + ((FootballFixture) f).getTeamName() + " - odds: " + f.getOdds());
+                fixturesComboBox.addItem(((FootballFixture)f).getFixtureString());
             } else if(f instanceof HorseRacingFixture){
-                fixturesComboBox.addItem("Horse racing - " + " Horse: " + ((HorseRacingFixture) f).getHorseName() + " - odds: " + f.getOdds() );
+                fixturesComboBox.addItem(((HorseRacingFixture)f).getFixtureString());
             }
         }
     }//GEN-LAST:event_viewBtnActionPerformed

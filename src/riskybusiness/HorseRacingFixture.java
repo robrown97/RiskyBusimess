@@ -31,5 +31,12 @@ public class HorseRacingFixture extends Fixture implements Serializable{
     public void setHorseName(String horseName) {
         this.horseName = horseName;
     }
+
+    @Override
+    protected String getFixtureString() {
+        return "Horse racing - Horse name: " + horseName + " - Odds: " + odds;
+    }
+    
+    
     
 }

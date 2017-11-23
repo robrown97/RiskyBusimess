@@ -29,4 +29,8 @@ public class Fixture implements Serializable{
     public void setOdds(double odds) {
         this.odds = odds;
     }
+    
+    protected String getFixtureString(){
+        return "Default fixture class";
+    }
 }
