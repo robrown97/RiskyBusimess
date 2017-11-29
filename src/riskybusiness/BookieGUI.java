@@ -144,6 +144,12 @@ public class BookieGUI extends javax.swing.JFrame {
             }
         });
 
+        fixturesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fixturesComboBoxActionPerformed(evt);
+            }
+        });
+
         deleteBtn.setText("Remove Fixture");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,6 +345,10 @@ public class BookieGUI extends javax.swing.JFrame {
         writeFile(fList);
         viewBtnActionPerformed(evt);
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void fixturesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fixturesComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fixturesComboBoxActionPerformed
 
     public void writeFile(ArrayList list){
         File f;
