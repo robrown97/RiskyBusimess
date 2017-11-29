@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author robertbrown
  */
-public class Bet extends SuperClass implements Serializable {
+public class Bet extends Fixture implements Serializable {
     //declaring variables of sub class
     private String sport;
     private String teamName;

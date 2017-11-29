@@ -15,17 +15,20 @@ public class Fixture implements Serializable{
     private String sport;
     private String name;
     private double odds;
+    private double stake;
 
     public Fixture() {
         sport = "";
         name = "";
         odds = 0.0;
+        stake = 0;
     }
 
-    public Fixture(String sport, String name, double odds) {
+    public Fixture(String sport, String name, double odds, double stake) {
         this.sport = sport;
         this.name = name;
         this.odds = odds;
+        this.stake = stake;
     }
 
     public String getSport() {
@@ -50,5 +53,13 @@ public class Fixture implements Serializable{
 
     public void setOdds(double odds) {
         this.odds = odds;
+    }
+
+    public double getStake() {
+        return stake;
+    }
+
+    public void setStake(double stake) {
+        this.stake = stake;
     }
 }

@@ -21,8 +21,9 @@ import javax.swing.JOptionPane;
 
 public class CustomerGUI extends javax.swing.JFrame {
     
-    private SuperClass s;//creating instance of the SuperClass
-    private ArrayList <SuperClass> customerBet; 
+    
+    private Fixture fixture;//creating instance of the SuperClass
+    private ArrayList <Fixture> customerBet; 
     private ArrayList <Fixture> fList;//creating a arrayList called CustomerBet
     /*
      * Creates new form EmployeeGUI
@@ -277,46 +278,46 @@ public class CustomerGUI extends javax.swing.JFrame {
 
     private void placeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeBtnActionPerformed
         
-        if(s instanceof Bet){
+        if(fixture instanceof Bet){
+            
             if(sportCB.getSelectedItem().equals("Football")){// user wants to bet on football
                 if(teamNameTF.getText().equals("") ||teamNameTF.getText().equals(" ")){//ensuring fields are filled out
                     JOptionPane.showMessageDialog(null,"Please fill out the required sections.");//error popup
                 }else{
                     //retrieving the values inputted into the customer App
-                    ((Bet)s).setTeamName(teamNameTF.getText());
-                    ((Bet)s).setBet(Double.parseDouble(betAmountTF.getText()));
+                    ((Bet)fixture).setName(teamNameTF.getText());
+                    ((Bet)fixture).setStake(Double.parseDouble(betAmountTF.getText()));
                 }
             }     
         
             else if(sportCB.getSelectedItem().equals("Horse Racing")){
                 if(horseNameTF.getText().equals("") ||horseNameTF.getText().equals(" ")){
-                    JOptionPane.showMessageDialog(null,"Please fill out the required sections.");//error popup
+                    JOptionPane.showMessageDialog(null,"Please fill out the required sections.");
                 }else{
-                    //retrieving the values inputted into the customer App
-                    ((Bet)s).setHorseName(horseNameTF.getText());
-                    ((Bet)s).setBet(Double.parseDouble(betAmountTF.getText()));
+                    ((Bet)fixture).setName(horseNameTF.getText());
+                    ((Bet)fixture).setStake(Double.parseDouble(betAmountTF.getText()));
                 }
             }
 
         }//instanceof bracket
         
-        customerBet.add(s);//add to the array list
+        customerBet.add(fixture);//add to the array list
         writeToFile();//write method created below
         
-        JOptionPane.showMessageDialog(null,"You Bet has been placed, Good Luck!");
+        JOptionPane.showMessageDialog(null,"Your bet has been placed, Good Luck!");
     }//GEN-LAST:event_placeBtnActionPerformed
 
     private void viewHorseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewHorseBtnActionPerformed
         readFromBookieFile();
         for (Fixture i : fList){
-            JOptionPane.showMessageDialong(null,"Horse Name: "+getName(i)+"\n"+"Odds: "+getOdds(i)+"\n");
+            JOptionPane.showMessageDialon(null,"Horse Name: "+getName(i)+"\n"+"Odds: "+getOdds(i)+"\n");
         }
     }//GEN-LAST:event_viewHorseBtnActionPerformed
 
     private void viewTeamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTeamBtnActionPerformed
         readFromBookieFile();
         for (Fixture i : fList){
-            JOptionPane.showMessageDialong(null,"Team Name: "+getName(i)+"\n"+"Odds: "+getOdds(i)+"\n");
+            JOptionPane.showMessageDialon(null,"Team Name: "+getName(i)+"\n"+"Odds: "+getOdds(i)+"\n");
         }
     }//GEN-LAST:event_viewTeamBtnActionPerformed
 
@@ -341,7 +342,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         FileInputStream fStream = new FileInputStream(f);
         ObjectInputStream oStream = new ObjectInputStream(fStream);
         
-        customerBet = (ArrayList <SuperClass>) oStream.readObject();//reading the arrayList fList
+        customerBet = (ArrayList <Fixture>) oStream.readObject();//reading the arrayList fList
         oStream.close();//closing the object stream
         }catch(IOException | ClassNotFoundException ex){//multi catch for any IO errors
             JOptionPane.showMessageDialog(null, ex);

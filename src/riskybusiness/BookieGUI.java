@@ -242,7 +242,6 @@ public class BookieGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sportCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sportCBActionPerformed
-
         if(sportCB.getSelectedItem().equals("Choose Sport")){
             teamNameTF.setEditable(false);
             horseNameTF.setEditable(false);
@@ -383,18 +382,18 @@ public class BookieGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            Fixture.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(Fixture.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            Fixture.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(Fixture.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Fixture.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(Fixture.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            Fixture.util.logging.Logger.getLogger(BookieGUI.class.getName()).log(Fixture.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        Fixture.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BookieGUI().setVisible(true);
             }

@@ -25,7 +25,6 @@ public class SuperClass {
     }
     
     //setters and getters
-
     public double getOdd() {
         return odd;
     }
