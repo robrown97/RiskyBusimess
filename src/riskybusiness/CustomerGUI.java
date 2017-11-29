@@ -131,7 +131,7 @@ public class CustomerGUI extends javax.swing.JFrame {
 
         currentFixturesCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
 
-        ViewFixturesBtn.setText("View Options");
+        ViewFixturesBtn.setText("Current Bets");
         ViewFixturesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ViewFixturesBtnActionPerformed(evt);
@@ -307,6 +307,17 @@ public class CustomerGUI extends javax.swing.JFrame {
         writeToFile();//write method created below
         
         JOptionPane.showMessageDialog(null,"You Bet has been placed, Good Luck!");
+        //reset ComboBox
+        sportCB.setSelectedItem("Choose Sport");
+        //clear text entered
+        teamNameTF.setText(" ");
+        horseNameTF.setText(" ");
+        betAmountTF.setText(" ");
+        //make all input options available again
+        teamLb.setVisible(true);
+        horseLb.setVisible(true);
+        teamNameTF.setVisible(true);
+        horseNameTF.setVisible(true);
     }//GEN-LAST:event_placeBtnActionPerformed
 
     private void ViewFixturesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewFixturesBtnActionPerformed
