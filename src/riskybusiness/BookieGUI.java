@@ -281,38 +281,43 @@ public class BookieGUI extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        if(sportCB.getSelectedItem().equals("Football")){
-            if(teamNameTF.getText().equals("") || oddsTF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Team name and odds are required");
-            } else {
-                fixture = new FootballFixture();
-                String teamName = teamNameTF.getText();
-                double odds = Double.parseDouble(oddsTF.getText());
+        try {
+            if(sportCB.getSelectedItem().equals("Football")){
+                if(teamNameTF.getText().equals("") || oddsTF.getText().equals("")){
+                    JOptionPane.showMessageDialog(null, "Team name and odds are required");
+                } else {
+                    fixture = new FootballFixture();
+                    String teamName = teamNameTF.getText();
+                    double odds = Double.parseDouble(oddsTF.getText());
 
-                ((FootballFixture)fixture).setTeamName(teamName);
-                fixture.setOdds(odds);
-                
-                fList.add(fixture);
-                writeFile(fList);
-                teamNameTF.setText("");
-                oddsTF.setText("");
-            }
-        } else if(sportCB.getSelectedItem().equals("Horse Racing")){
-            if(horseNameTF.getText().equals("") || oddsTF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Horse name and odds are required");
-            } else {
-                fixture = new HorseRacingFixture();
-                String horseName = horseNameTF.getText();
-                double odds = Double.parseDouble(oddsTF.getText());
+                    ((FootballFixture)fixture).setTeamName(teamName);
+                    fixture.setOdds(odds);
 
-                ((HorseRacingFixture)fixture).setHorseName(horseName);
-                fixture.setOdds(odds);
-                
-                fList.add(fixture);
-                writeFile(fList);
-                oddsTF.setText("");
-                horseNameTF.setText("");
+                    fList.add(fixture);
+                    writeFile(fList);
+                    teamNameTF.setText("");
+                    oddsTF.setText("");
+                }
+            } else if(sportCB.getSelectedItem().equals("Horse Racing")){
+                if(horseNameTF.getText().equals("") || oddsTF.getText().equals("")){
+                    JOptionPane.showMessageDialog(null, "Horse name and odds are required");
+                } else {
+                    fixture = new HorseRacingFixture();
+                    String horseName = horseNameTF.getText();
+                    double odds = Double.parseDouble(oddsTF.getText());
+
+                    ((HorseRacingFixture)fixture).setHorseName(horseName);
+                    fixture.setOdds(odds);
+
+                    fList.add(fixture);
+                    writeFile(fList);
+                    oddsTF.setText("");
+                    horseNameTF.setText("");
+                }
             }
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "You must enter a number for the odds");
+            oddsTF.setText("");
         }
     }//GEN-LAST:event_addBtnActionPerformed
     

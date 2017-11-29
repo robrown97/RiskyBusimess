@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Eoghan
  */
-public class Fixture implements Serializable{
+public abstract class Fixture implements Serializable{
     protected double odds;
 
     public Fixture() {
@@ -30,7 +30,5 @@ public class Fixture implements Serializable{
         this.odds = odds;
     }
     
-    protected String getFixtureString(){
-        return "Default fixture class";
-    }
+    public abstract String getFixtureString();
 }
