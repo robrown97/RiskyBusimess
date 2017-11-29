@@ -33,7 +33,7 @@ public class HorseRacingFixture extends Fixture implements Serializable{
     }
 
     @Override
-    protected String getFixtureString() {
+    public String getFixtureString() {
         return "Horse racing - Horse name: " + horseName + " - Odds: " + odds;
     }
     

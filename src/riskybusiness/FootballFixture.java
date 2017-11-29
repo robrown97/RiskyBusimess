@@ -33,7 +33,7 @@ public class FootballFixture extends Fixture implements Serializable{
     }
 
     @Override
-    protected String getFixtureString() {
+    public String getFixtureString() {
         return "Football - Team: " + teamName + " - Odds: " + odds;
     }
     
