@@ -56,8 +56,6 @@ public class CustomerGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         teamLb = new javax.swing.JLabel();
         horseLb = new javax.swing.JLabel();
-        teamNameTF = new javax.swing.JTextField();
-        horseNameTF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         betAmountTF = new javax.swing.JTextField();
         placeBtn = new javax.swing.JButton();
@@ -67,6 +65,9 @@ public class CustomerGUI extends javax.swing.JFrame {
         currentFixturesCB = new javax.swing.JComboBox<>();
         ViewFixturesBtn = new javax.swing.JButton();
         computeBtn = new javax.swing.JButton();
+        teamNameCB = new javax.swing.JComboBox<>();
+        startBtn = new javax.swing.JButton();
+        horseNameCB = new javax.swing.JComboBox<>();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -82,9 +83,9 @@ public class CustomerGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("View all Horses, Teams and Odds Below:");
+        jLabel1.setText("View all horses, teams and their odds below:");
 
-        jLabel2.setText("Place Your Bet Below ");
+        jLabel2.setText("Feeling Lucky? Place Your Bet Below ");
 
         sportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Sport", "Football", "Horse Racing"}));
         sportCB.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +131,11 @@ public class CustomerGUI extends javax.swing.JFrame {
         });
 
         currentFixturesCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        currentFixturesCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentFixturesCBActionPerformed(evt);
+            }
+        });
 
         ViewFixturesBtn.setText("Current Bets");
         ViewFixturesBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +145,25 @@ public class CustomerGUI extends javax.swing.JFrame {
         });
 
         computeBtn.setText("Outcome");
+
+        teamNameCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teamNameCBActionPerformed(evt);
+            }
+        });
+
+        startBtn.setText("Start Betting");
+        startBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startBtnActionPerformed(evt);
+            }
+        });
+
+        horseNameCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horseNameCBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,22 +179,15 @@ public class CustomerGUI extends javax.swing.JFrame {
                                 .addComponent(currentFixturesCB, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ViewFixturesBtn))
-                            .addComponent(jLabel2)))
+                            .addComponent(jLabel2)
+                            .addComponent(startBtn)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sportCB, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(teamLb)
-                                .addGap(15, 15, 15)
-                                .addComponent(teamNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(horseLb)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(horseNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(horseNameCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(placeBtn)
@@ -183,7 +201,16 @@ public class CustomerGUI extends javax.swing.JFrame {
                                         .addComponent(doubleDownCheckBox))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(computeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(computeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(sportCB, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(teamLb)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(teamNameCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,25 +222,27 @@ public class CustomerGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(currentFixturesCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ViewFixturesBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(12, 12, 12)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(startBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sportCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(teamLb)
-                    .addComponent(teamNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(teamNameCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(horseLb)
-                    .addComponent(horseNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(horseNameCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(betAmountTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,25 +264,37 @@ public class CustomerGUI extends javax.swing.JFrame {
 
     private void sportCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sportCBActionPerformed
     if(sportCB.getSelectedItem().equals("Choose Sport")){
-            teamNameTF.setEditable(false);
-            horseNameTF.setEditable(false);
-                teamNameTF.setVisible(true);
+            teamNameCB.setEditable(false);
+            horseNameCB.setEditable(false);
+                teamNameCB.setVisible(true);
                 teamLb.setVisible(true);
-                horseNameTF.setVisible(true);
+                horseNameCB.setVisible(true);
                 horseLb.setVisible(true);
         } else if(sportCB.getSelectedItem().equals("Football")){
-            teamNameTF.setEditable(true);
-            horseNameTF.setEditable(false);
-                teamNameTF.setVisible(true);
+            readFromBookieFile();
+                for(Fixture f : fList){
+                    if(f instanceof FootballFixture){
+                        teamNameCB.addItem(((FootballFixture) f).getTeamName());
+                    }
+                }
+            teamNameCB.setEditable(true);
+            horseNameCB.setEditable(false);
+                teamNameCB.setVisible(true);
                 teamLb.setVisible(true);
-                horseNameTF.setVisible(false);
+                horseNameCB.setVisible(false);
                 horseLb.setVisible(false);
         } else if(sportCB.getSelectedItem().equals("Horse Racing")){
-            teamNameTF.setEditable(false);
-            horseNameTF.setEditable(true);
-                horseNameTF.setVisible(true);
+            readFromBookieFile();
+                for(Fixture f : fList){
+                    if(f instanceof HorseRacingFixture){
+                    horseNameCB.addItem(((HorseRacingFixture) f).getHorseName());
+                }   
+            }
+            teamNameCB.setEditable(false);
+            horseNameCB.setEditable(true);
+                horseNameCB.setVisible(true);
                 horseLb.setVisible(true);
-                teamNameTF.setVisible(false);
+                teamNameCB.setVisible(false);
                 teamLb.setVisible(false);
         }
     }//GEN-LAST:event_sportCBActionPerformed
@@ -262,14 +303,14 @@ public class CustomerGUI extends javax.swing.JFrame {
         //clearing the available bets CB
         currentFixturesCB.removeAllItems();
         //clear text entered
-        teamNameTF.setText(" ");
-        horseNameTF.setText(" ");
+        teamNameCB.removeAllItems();
+        horseNameCB.removeAllItems();
         betAmountTF.setText(" ");
         //make all input options available again
         teamLb.setVisible(true);
         horseLb.setVisible(true);
-        teamNameTF.setVisible(true);
-        horseNameTF.setVisible(true);
+        teamNameCB.removeAllItems();
+        horseNameCB.removeAllItems();
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
@@ -282,21 +323,21 @@ public class CustomerGUI extends javax.swing.JFrame {
         
         if(s instanceof Bet){
             if(sportCB.getSelectedItem().equals("Football")){// user wants to bet on football
-                if(teamNameTF.getText().equals("") ||teamNameTF.getText().equals(" ")){//ensuring fields are filled out
+                if(teamNameCB.getSelectedItem().equals("") ||teamNameCB.getSelectedItem().equals(" ")){//ensuring fields are filled out
                     JOptionPane.showMessageDialog(null,"Please fill out the required sections.");//error popup
                 }else{
                     //retrieving the values inputted into the customer App
-                    ((Bet)s).setTeamName(teamNameTF.getText());
+                    ((Bet)s).setTeamName(teamNameCB.getSelectedItem());
                     ((Bet)s).setBet(Double.parseDouble(betAmountTF.getText()));
                 }
             }     
         
             else if(sportCB.getSelectedItem().equals("Horse Racing")){
-                if(horseNameTF.getText().equals("") ||horseNameTF.getText().equals(" ")){
+                if(horseNameCB.getSelectedItem().equals("") ||horseNameCB.getSelectedItem().equals(" ")){
                     JOptionPane.showMessageDialog(null,"Please fill out the required sections.");//error popup
                 }else{
                     //retrieving the values inputted into the customer App
-                    ((Bet)s).setHorseName(horseNameTF.getText());
+                    ((Bet)s).setHorseName(horseNameCB.getSelectedItem());
                     ((Bet)s).setBet(Double.parseDouble(betAmountTF.getText()));
                 }
             }
@@ -310,13 +351,13 @@ public class CustomerGUI extends javax.swing.JFrame {
         //reset ComboBox
         sportCB.setSelectedItem("Choose Sport");
         //clear text entered
-        teamNameTF.setText(" ");
+        teamNameCB.setSelectedItem(" ");
         horseNameTF.setText(" ");
         betAmountTF.setText(" ");
         //make all input options available again
         teamLb.setVisible(true);
         horseLb.setVisible(true);
-        teamNameTF.setVisible(true);
+        teamNameCB.setVisible(true);
         horseNameTF.setVisible(true);
     }//GEN-LAST:event_placeBtnActionPerformed
 
@@ -333,8 +374,24 @@ public class CustomerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewFixturesBtnActionPerformed
 
     private void doubleDownCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doubleDownCheckBoxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_doubleDownCheckBoxActionPerformed
+
+    private void currentFixturesCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentFixturesCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentFixturesCBActionPerformed
+
+    private void teamNameCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamNameCBActionPerformed
+        
+    }//GEN-LAST:event_teamNameCBActionPerformed
+
+    private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
+        
+    }//GEN-LAST:event_startBtnActionPerformed
+
+    private void horseNameCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horseNameCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_horseNameCBActionPerformed
 
     
     //write method
@@ -421,7 +478,7 @@ public class CustomerGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox doubleDownCheckBox;
     private javax.swing.JButton homeBtn;
     private javax.swing.JLabel horseLb;
-    private javax.swing.JTextField horseNameTF;
+    private javax.swing.JComboBox<String> horseNameCB;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -437,7 +494,8 @@ public class CustomerGUI extends javax.swing.JFrame {
     private javax.swing.JButton placeBtn;
     private javax.swing.JButton resetBtn;
     private javax.swing.JComboBox<String> sportCB;
+    private javax.swing.JButton startBtn;
     private javax.swing.JLabel teamLb;
-    private javax.swing.JTextField teamNameTF;
+    private javax.swing.JComboBox<String> teamNameCB;
     // End of variables declaration//GEN-END:variables
 }
