@@ -366,7 +366,7 @@ public class CustomerGUI extends javax.swing.JFrame {
         sportCB.setSelectedItem("Choose Sport");
         //clear text entered
         teamNameCB.setSelectedItem(" ");
-        horseNameCB.setSelectedItem("");
+        horseNameCB.setSelectedItem(" ");
         betAmountTF.setText(" ");
         //make all input options available again
         teamLb.setVisible(true);
