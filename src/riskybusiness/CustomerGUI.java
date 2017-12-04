@@ -70,7 +70,6 @@ public class CustomerGUI extends javax.swing.JFrame {
         placeBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
-        doubleDownCheckBox = new javax.swing.JCheckBox();
         teamNameCB = new javax.swing.JComboBox<>();
         horseNameCB = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -167,13 +166,6 @@ public class CustomerGUI extends javax.swing.JFrame {
             }
         });
 
-        doubleDownCheckBox.setText("Double Down");
-        doubleDownCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doubleDownCheckBoxActionPerformed(evt);
-            }
-        });
-
         teamNameCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 teamNameCBActionPerformed(evt);
@@ -207,43 +199,41 @@ public class CustomerGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(66, 66, 66)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(myBetsBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(myBetsCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(myBetsCB, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(6, 6, 6)
+                                .addComponent(sportCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(teamLb)
                                 .addGap(17, 17, 17)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(placeBtn)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(betAmountTF, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(doubleDownCheckBox))))
+                                .addComponent(teamNameCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(teamLb)
-                                    .addComponent(horseLb))
+                                .addComponent(horseLb)
+                                .addGap(14, 14, 14)
+                                .addComponent(horseNameCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(sportCB, 0, 136, Short.MAX_VALUE)
-                                    .addComponent(teamNameCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(horseNameCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(betAmountTF, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(placeBtn)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addComponent(jLabel4)))
-                        .addGap(0, 9, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,8 +255,7 @@ public class CustomerGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(betAmountTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(doubleDownCheckBox))
+                    .addComponent(betAmountTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(placeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -383,10 +372,6 @@ public class CustomerGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ViewFixturesBtnActionPerformed
 
-    private void doubleDownCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doubleDownCheckBoxActionPerformed
-        
-    }//GEN-LAST:event_doubleDownCheckBoxActionPerformed
-
     private void currentFixturesCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentFixturesCBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_currentFixturesCBActionPerformed
@@ -412,10 +397,10 @@ public class CustomerGUI extends javax.swing.JFrame {
         readFromFile();
         for(SuperClass i : customerBet){
             if(i instanceof TeamBet){
-                 myBetsCB.addItem("Team: " + ((TeamBet)i).getTeamName() + "Stake: " + i.getStake());
+                 JOptionPane.showMessageDialog(null,"Team: " + ((TeamBet)i).getTeamName() + " - Stake: " + i.getStake());
             }
             else if(i instanceof HorseBet){
-                myBetsCB.addItem("Horse: " + ((HorseBet)i).getHorseName() + "Stake: " + i.getStake());
+                JOptionPane.showMessageDialog(null,"Horse: " + ((HorseBet)i).getHorseName() + "Stake: " + i.getStake());
             }
         }
     }//GEN-LAST:event_myBetsBtnActionPerformed
@@ -474,13 +459,23 @@ public class CustomerGUI extends javax.swing.JFrame {
         readFromBookieFile();
         boolean result = outcome.nextBoolean();
         if(result==true){
-            //double winnings =( (Flist.getOdds * betAmountTF.getText()) + betAmountTF.getText() )  ;
-            JOptionPane.showMessageDialog(null, "You won €" + (betAmountTF).toString());
-        }else{JOptionPane.showMessageDialog(null, "Sorry you lost €"+ (betAmountTF).toString() );
+            if(sportCB.getSelectedItem().equals("Horse Racing")){
+                for(Fixture f : fList){
+                    if(horseNameCB.getSelectedItem().equals(((HorseRacingFixture)f).getHorseName())){
+                        
+                    }
+                }
+            //ensure the correct odds are being used in calculation. Match horseNameCB or teamNameCB to the 
+            //JOptionPane.showMessageDialog(null, "You won €" + fList.getOdds());
+            }
+        }
+        
+        else{JOptionPane.showMessageDialog(null, "Sorry you lost €"+ betAmountTF.getText());
             
         }
     
-    }
+        }
+       
     /**
      * @param args the command line arguments
      */
@@ -521,7 +516,6 @@ public class CustomerGUI extends javax.swing.JFrame {
     private javax.swing.JButton ViewFixturesBtn;
     private javax.swing.JTextField betAmountTF;
     private javax.swing.JComboBox<String> currentFixturesCB;
-    private javax.swing.JCheckBox doubleDownCheckBox;
     private javax.swing.JButton homeBtn;
     private javax.swing.JLabel horseLb;
     private javax.swing.JComboBox<String> horseNameCB;
