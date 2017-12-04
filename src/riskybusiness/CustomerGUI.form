@@ -96,6 +96,17 @@
         <Property name="text" type="java.lang.String" value="Feeling Lucky? Place Your Bet Below "/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextPane" name="jTextPane2">
+        </Component>
+      </SubComponents>
+    </Container>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -136,11 +147,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="homeBtn" min="-2" pref="64" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="2" attributes="0">
-                                      <Component id="placeBtn" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="6" pref="6" max="6" attributes="0"/>
-                                      <Component id="computeBtn" min="-2" pref="85" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="placeBtn" alignment="2" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="2" attributes="0">
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -169,7 +176,7 @@
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -202,12 +209,9 @@
                   <Component id="betAmountTF" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="doubleDownCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="placeBtn" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="computeBtn" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="placeBtn" min="-2" pref="47" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="resetBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="homeBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -217,7 +221,7 @@
                   <Component id="myBetsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="myBetsCB" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -263,7 +267,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="placeBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Place Bet"/>
+        <Property name="text" type="java.lang.String" value="Bet"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="placeBtnActionPerformed"/>
@@ -292,11 +296,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doubleDownCheckBoxActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="computeBtn">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Outcome"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="teamNameCB">
       <Properties>
@@ -346,6 +345,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="myBetsCBActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>

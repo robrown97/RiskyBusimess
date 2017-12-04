@@ -11,7 +11,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import static java.lang.Math.random;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +26,7 @@ public class CustomerGUI extends javax.swing.JFrame {
     private SuperClass s;//creating instance of the SuperClass
     private ArrayList <SuperClass> customerBet; 
     private ArrayList <Fixture> fList;//creating a arrayList called CustomerBet
+    Random outcome = new Random();
     /*
      * Creates new form EmployeeGUI
      */
@@ -56,6 +59,8 @@ public class CustomerGUI extends javax.swing.JFrame {
         ViewFixturesBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
         sportCB = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         teamLb = new javax.swing.JLabel();
@@ -66,7 +71,6 @@ public class CustomerGUI extends javax.swing.JFrame {
         resetBtn = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
         doubleDownCheckBox = new javax.swing.JCheckBox();
-        computeBtn = new javax.swing.JButton();
         teamNameCB = new javax.swing.JComboBox<>();
         horseNameCB = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -117,6 +121,8 @@ public class CustomerGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Feeling Lucky? Place Your Bet Below ");
 
+        jScrollPane4.setViewportView(jTextPane2);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         sportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Sport", "Football", "Horse Racing"}));
@@ -140,7 +146,7 @@ public class CustomerGUI extends javax.swing.JFrame {
             }
         });
 
-        placeBtn.setText("Place Bet");
+        placeBtn.setText("Bet");
         placeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 placeBtnActionPerformed(evt);
@@ -168,8 +174,6 @@ public class CustomerGUI extends javax.swing.JFrame {
             }
         });
 
-        computeBtn.setText("Outcome");
-
         teamNameCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 teamNameCBActionPerformed(evt);
@@ -192,6 +196,12 @@ public class CustomerGUI extends javax.swing.JFrame {
             }
         });
 
+        myBetsCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myBetsCBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -211,10 +221,7 @@ public class CustomerGUI extends javax.swing.JFrame {
                                         .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(placeBtn)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(computeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(placeBtn)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -235,7 +242,7 @@ public class CustomerGUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(66, 66, 66)
                                 .addComponent(jLabel4)))
-                        .addGap(0, 11, Short.MAX_VALUE)))
+                        .addGap(0, 9, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -260,11 +267,9 @@ public class CustomerGUI extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(betAmountTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(doubleDownCheckBox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(placeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(computeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(placeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resetBtn)
                     .addComponent(homeBtn))
@@ -272,7 +277,7 @@ public class CustomerGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(myBetsBtn)
                     .addComponent(myBetsCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -360,8 +365,7 @@ public class CustomerGUI extends javax.swing.JFrame {
 
         customerBet.add(s);//add to the array list
         writeToFile();//write method created below
-        
-        JOptionPane.showMessageDialog(null,"You bet has been placed. Good Luck!");
+        compute();
         //reset ComboBox
         sportCB.setSelectedItem("Choose Sport");
         //clear text entered
@@ -408,10 +412,10 @@ public class CustomerGUI extends javax.swing.JFrame {
         readFromFile();
         for(SuperClass i : customerBet){
             if(i instanceof TeamBet){
-                 JOptionPane.showMessageDialog(null,"Team:" + i.getTeamName() + "Stake:" + i.getStake());
+                 myBetsCB.addItem("Team: " + ((TeamBet)i).getTeamName() + "Stake: " + i.getStake());
             }
             else if(i instanceof HorseBet){
-                JOptionPane.showMessageDialog(null,"Horse:" + i.getHorseName() + "Stake" + i.getStake());
+                myBetsCB.addItem("Horse: " + ((HorseBet)i).getHorseName() + "Stake: " + i.getStake());
             }
         }
     }//GEN-LAST:event_myBetsBtnActionPerformed
@@ -419,6 +423,10 @@ public class CustomerGUI extends javax.swing.JFrame {
     private void betAmountTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betAmountTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_betAmountTFActionPerformed
+
+    private void myBetsCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myBetsCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_myBetsCBActionPerformed
 
     
     //write method
@@ -461,6 +469,18 @@ public class CustomerGUI extends javax.swing.JFrame {
         }
     }
     
+    public void compute(){
+        readFromFile();
+        readFromBookieFile();
+        boolean result = outcome.nextBoolean();
+        if(result==true){
+            //double winnings =( (Flist.getOdds * betAmountTF.getText()) + betAmountTF.getText() )  ;
+            JOptionPane.showMessageDialog(null, "You won €" + (betAmountTF).toString());
+        }else{JOptionPane.showMessageDialog(null, "Sorry you lost €"+ (betAmountTF).toString() );
+            
+        }
+    
+    }
     /**
      * @param args the command line arguments
      */
@@ -500,7 +520,6 @@ public class CustomerGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ViewFixturesBtn;
     private javax.swing.JTextField betAmountTF;
-    private javax.swing.JButton computeBtn;
     private javax.swing.JComboBox<String> currentFixturesCB;
     private javax.swing.JCheckBox doubleDownCheckBox;
     private javax.swing.JButton homeBtn;
@@ -516,8 +535,10 @@ public class CustomerGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
     private javax.swing.JButton myBetsBtn;
     private javax.swing.JComboBox<String> myBetsCB;
     private javax.swing.JTextPane oddsTP;
