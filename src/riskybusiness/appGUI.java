@@ -31,9 +31,11 @@ public class appGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         customerBtn = new javax.swing.JButton();
         employeeBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -43,10 +45,22 @@ public class appGUI extends javax.swing.JFrame {
 
         jLabel3.setText("App");
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel4.setText("Cotinue As:");
 
+        customerBtn.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 18)); // NOI18N
         customerBtn.setText("Customer");
         customerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +68,7 @@ public class appGUI extends javax.swing.JFrame {
             }
         });
 
+        employeeBtn.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 18)); // NOI18N
         employeeBtn.setText("Employee");
         employeeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,11 +76,14 @@ public class appGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/horse22.gif"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(17, 17, 17)
                 .addComponent(customerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -75,10 +93,22 @@ public class appGUI extends javax.swing.JFrame {
                 .addGap(101, 101, 101)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                .addContainerGap()
+                .addComponent(jLabel5))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(customerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(employeeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> c7f9b6abf5150ffbb97f0001a520e6b22c2f18c6
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(30, 30, 30)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -86,6 +116,20 @@ public class appGUI extends javax.swing.JFrame {
                     .addComponent(employeeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(customerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(51, Short.MAX_VALUE))
+=======
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(customerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(employeeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(11, Short.MAX_VALUE))
+>>>>>>> c7f9b6abf5150ffbb97f0001a520e6b22c2f18c6
         );
 
         pack();
@@ -146,5 +190,7 @@ public class appGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
