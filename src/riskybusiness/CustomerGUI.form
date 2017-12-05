@@ -136,62 +136,7 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-<<<<<<< HEAD
               <Group type="103" groupAlignment="0" attributes="0">
-=======
-<<<<<<< HEAD
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="176" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="teamLb" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="horseLb" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="sportCB" alignment="0" max="32767" attributes="0"/>
-                          <Component id="teamNameCB" alignment="0" max="32767" attributes="0"/>
-                          <Component id="horseNameCB" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="placeBtn" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="betAmountTF" min="-2" pref="43" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="6" pref="6" max="6" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="doubleDownCheckBox" min="-2" max="-2" attributes="0"/>
-                          <Component id="resetBtn" min="-2" pref="61" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace min="12" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="homeBtn" alignment="1" min="-2" pref="92" max="-2" attributes="0"/>
-                  <Component id="myBetsBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="myBetsCB" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-=======
-              <Group type="103" groupAlignment="1" attributes="0">
->>>>>>> c7f9b6abf5150ffbb97f0001a520e6b22c2f18c6
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="myBetsBtn" min="-2" max="-2" attributes="0"/>
@@ -234,31 +179,19 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-<<<<<<< HEAD
               <Component id="placeBtn" min="-2" pref="99" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="resetBtn" min="-2" pref="105" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-=======
->>>>>>> origin/master
->>>>>>> c7f9b6abf5150ffbb97f0001a520e6b22c2f18c6
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="85" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="sportCB" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -279,15 +212,9 @@
                   <Component id="betAmountTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-<<<<<<< HEAD
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="placeBtn" min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="resetBtn" min="-2" pref="46" max="-2" attributes="0"/>
-=======
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="placeBtn" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                  <Component id="resetBtn" alignment="3" min="-2" max="-2" attributes="0"/>
->>>>>>> c7f9b6abf5150ffbb97f0001a520e6b22c2f18c6
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="homeBtn" min="-2" max="-2" attributes="0"/>
@@ -296,8 +223,6 @@
                   <Component id="myBetsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="myBetsCB" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="homeBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -360,7 +285,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="homeBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Main Menu"/>
+        <Property name="text" type="java.lang.String" value="Home"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeBtnActionPerformed"/>
@@ -397,7 +322,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Sans Typewriter" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Place your Bets!"/>
+        <Property name="text" type="java.lang.String" value="Place a Bet"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="myBetsBtn">
@@ -420,13 +345,6 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images/246567-casino.png"/>
-        </Property>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
